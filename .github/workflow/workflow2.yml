@@ -1,0 +1,25 @@
+# me faça um yaml de bucket s3 de site estatico voltado pro arquivo de test.tf e com uma mensagem no final
+
+name: Create S3 Static Site
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.7
+      - name: Run Terraform
+        run: |
+          cd terraform
+          terraform init
+          terraform apply -auto-approve
+      - name: Add Comment
+        run: echo "O bucket S3 foi criado com sucesso! "

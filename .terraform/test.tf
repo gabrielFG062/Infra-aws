@@ -1,6 +1,6 @@
 provider "aws" {
     region = "us-east-1"
-    acl = "private"
+    # acl = "private"
 }
 variable "bucket_name" {
     type = string
